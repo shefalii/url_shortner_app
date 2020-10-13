@@ -10,17 +10,17 @@ mongoose.connect('mongodb+srv://shefali_17:qwerty.u1@cluster0.dcote.mongodb.net/
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: false}));
 
-app.get('https://url-shortner-app-netsmartz.herokuapp.com/', async (req, res) => {
+app.get('/', async (req, res) => {
     const urls = await ShortUrl.find();
     res.render('view', { urls: urls });
 })
 
-app.post('https://url-shortner-app-netsmartz.herokuapp.com/shortUrlGenerator', async (req, res) => {
+app.post('/shortUrlGenerator', async (req, res) => {
     await ShortUrl.create({fullUrl: req.body.fullUrl});
     res.redirect('/');
 })
 
-app.get('https://url-shortner-app-netsmartz.herokuapp.com/:shortUrl', async (req, res) => {
+app.get('/:shortUrl', async (req, res) => {
   const url = await ShortUrl.findOne({shortUrl: req.params.shortUrl});
   if(url == null) return res.sendStatus(404);
   url.save();
