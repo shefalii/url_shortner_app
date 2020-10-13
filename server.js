@@ -26,4 +26,4 @@ app.get('/:shortUrl', async (req, res) => {
   url.save();
   res.redirect(url.fullUrl);
 })
-app.listen(process.env.port || 5000);
+app.listen(process.env.port || 8000);
